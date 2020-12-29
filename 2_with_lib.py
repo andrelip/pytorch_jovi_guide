@@ -36,7 +36,7 @@ loss_fn = F.mse_loss
 loss = loss_fn(model(inputs), targets)
 print(loss)
 # %%
-opt = torch.optim.Adam(model.parameters(), lr=1e-2)
+opt = torch.optim.Adam(model.parameters(), lr=1e-1)
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt, mode='min')
 
 
@@ -71,7 +71,6 @@ def fit(num_epochs, model, loss_fn, opt, train_dl):
             # 4. Update parameters using gradients
             opt.step()
             scheduler.step(loss)
-            print(scheduler.state_dict())
 
             # 5. Reset the gradients to zero
             opt.zero_grad()
